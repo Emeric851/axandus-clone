@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -66,11 +66,12 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  color: #181b2d;
+  font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
+  color: #666666;
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Gotham', 'Raleway', 'Arial Black', sans-serif;
   font-weight: 700;
 }
 
