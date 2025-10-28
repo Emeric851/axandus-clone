@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import LinkedInFeed from '../components/LinkedInFeed';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
