@@ -1,14 +1,13 @@
 'use client';
 
 import { useState } from "react";
-import LinkedInFeed from '../components/LinkedInFeed';
-import LinkedInFeed from './components/LinkedInFeed';
+import LinkedInFeed from '../components/LinkedInFeed'; // garde un seul import
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   return (
-       <div className="min-h-screen scroll-smooth">
+    <div className="min-h-screen scroll-smooth">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#cc0000] py-4 px-8 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">
@@ -25,11 +24,11 @@ export default function Home() {
             aria-label="Toggle menu"
           >
             {isMenuOpen ? '✕' : '☰'}
-          </button>  
+          </button>
         </div>
       </nav>
 
-     {/* Mobile Menu */}
+      {/* Mobile Menu */}
       <div 
         className={`fixed top-[72px] left-0 right-0 bg-[#666666] z-40 transition-all duration-300 ease-in-out overflow-hidden shadow-lg ${
           isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
@@ -73,8 +72,7 @@ export default function Home() {
             L'objectif d'AXANDUS est d'accélérer le développement d'entreprises innovantes et de start-up.
             Dans toutes ses composantes, de la conception à l'industrialisation, en passant par les achats,
             le business développement, pour lui permettre d'atteindre rapidement une position concurrentielle
-            forte sur son marché. Cet accompagnement permet aux entreprises de réduire le « time to market »
-            du produit innovant et ainsi augmenter les chances de succès.
+            forte sur son marché. Cet accompagnement permet aux entreprises de réduire le « time to market » du produit innovant et ainsi augmenter les chances de succès.
           </p>
         </div>
       </section>
@@ -194,21 +192,15 @@ export default function Home() {
         </div>
       </section>
 
-  {/* LinkedIn Feed */}
-/*         
-<section id="linkedin-feed">
-  <h2>Actualités LinkedIn</h2>
-  <LinkedInFeed />
-</section>
-*/
-  export default function HomePage() {
-  return (
-    <main style={{ padding: '20px' }}>
-      <h1>Bienvenue sur notre site</h1>
-      <LinkedInFeed />
-    </main>
-  );
-}       
+      {/* LinkedIn Feed */}
+      <section id="linkedin" className="py-24 bg-gray-50">
+        <div className="container mx-auto px-8 max-w-5xl text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-10 uppercase">
+            Actualités LinkedIn
+          </h2>
+          <LinkedInFeed />
+        </div>
+      </section>
 
       {/* Notre réseau */}
       <section id="reseau" className="py-24 bg-white">
