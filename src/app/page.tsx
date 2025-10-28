@@ -15,7 +15,7 @@ export default function Home() {
             <img
               src="/assets/images/logo-axandus-white.png"
               alt="Axandus Logo"
-              className="h-12 md:h-14"
+              className="h-16 md:h-20"
             />
           </div>
           <button
