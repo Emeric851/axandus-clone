@@ -8,7 +8,7 @@ export default function Home() {
   return (
        <div className="min-h-screen scroll-smooth">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#181b2d] py-4 px-8 shadow-lg">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#666666] py-4 px-8 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
             <img
@@ -17,12 +17,33 @@ export default function Home() {
               className="h-12 md:h-14"
             />
           </div>
-          <button className="text-white text-2xl hover:text-[#ca0506] transition-colors">☰</button>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white text-2xl hover:text-[#CC0000] transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? '✕' : '☰'}
+          </button>  
         </div>
       </nav>
 
+     {/* Mobile Menu */}
+      <div 
+        className={`fixed top-[72px] left-0 right-0 bg-[#666666] z-40 transition-all duration-300 ease-in-out overflow-hidden shadow-lg ${
+          isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="container mx-auto px-8 py-6">
+          <a href="#accueil" onClick={() => setIsMenuOpen(false)} className="block text-white py-3 hover:text-[#CC0000] transition-colors">Accueil</a>
+          <a href="#methode" onClick={() => setIsMenuOpen(false)} className="block text-white py-3 hover:text-[#CC0000] transition-colors">Méthode</a>
+          <a href="#linkedin" onClick={() => setIsMenuOpen(false)} className="block text-white py-3 hover:text-[#CC0000] transition-colors">Actualités LinkedIn</a>
+          <a href="#reseau" onClick={() => setIsMenuOpen(false)} className="block text-white py-3 hover:text-[#CC0000] transition-colors">Notre Réseau</a>
+          <a href="#contact" onClick={() => setIsMenuOpen(false)} className="block text-white py-3 hover:text-[#CC0000] transition-colors">Contact</a>
+        </div>
+      </div>
+
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center text-white pt-20"
+      <section id="accueil" className="relative min-h-screen flex items-center justify-center text-white pt-20"
         style={{
           background: `linear-gradient(rgba(24, 27, 45, 0.85), rgba(24, 27, 45, 0.85)), url('https://ext.same-assets.com/2033783188/1506342101.jpeg')`,
           backgroundSize: 'cover',
@@ -42,9 +63,9 @@ export default function Home() {
       {/* Start-up et entreprises innovantes */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-8 max-w-5xl text-center">
-          <p className="text-xs md:text-sm text-[#ca0506] mb-4 uppercase tracking-widest font-semibold">Axandus</p>
+          <p className="text-xs md:text-sm text-[#cc0000] mb-4 uppercase tracking-widest font-semibold">Axandus</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-10 uppercase">
-            Start-up et entreprises <span className="underline decoration-[#ca0506] decoration-4 underline-offset-8">innovantes</span>
+            Start-up et entreprises <span className="underline decoration-[#cc0000] decoration-4 underline-offset-8">innovantes</span>
           </h2>
           <p className="text-base md:text-lg text-gray-600 leading-relaxed">
             L'objectif d'AXANDUS est d'accélérer le développement d'entreprises innovantes et de start-up.
@@ -61,7 +82,7 @@ export default function Home() {
         <div className="container mx-auto px-8">
           <div className="max-w-5xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase">
-              Qu'est ce qu'un <span className="underline decoration-[#ca0506] decoration-4 underline-offset-8">accélérateur industriel</span> ?
+              Qu'est ce qu'un <span className="underline decoration-[#cc0000] decoration-4 underline-offset-8">accélérateur industriel</span> ?
             </h2>
             <p className="text-base md:text-lg text-gray-600 leading-relaxed">
               D'une manière générale les incubateurs sont la première étape pour les porteurs de projets.
@@ -116,7 +137,7 @@ export default function Home() {
       </section>
 
       {/* Méthode Axandus */}
-      <section className="py-24 bg-[#ca0506] text-white">
+      <section id="methode" className="py-24 bg-[#CC0000] text-white">
         <div className="container mx-auto px-8">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-center uppercase">
             Méthode Axandus
@@ -171,38 +192,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Présentation vidéo */}
-      <section className="py-24 bg-[#ca0506]">
+       {/* LinkedIn Feed */}
+        <section id="linkedin" className="py-24 bg-[#CC0000]">
         <div className="container mx-auto px-8 max-w-5xl">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center uppercase text-[#181b2d]">
-            Présentation vidéo d'Axandus
+           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center uppercase text-[#666666]">
+            Actualités LinkedIn
           </h2>
 
-          <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-2xl mb-12">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/T_gzfP-U270"
-              title="Clip corporate Axandus"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
+       <div className="bg-white rounded-lg shadow-2xl p-8 mb-12">
+            <div className="max-h-[600px] overflow-y-auto">
+              <iframe
+                src="https://rss.app/embed/v1/list/yLnJFWaEe6zY8Tpw"
+                style={{
+                  width: '100%',
+                  minHeight: '500px',
+                  border: 'none',
+                }}
+                title="LinkedIn Feed Axandus"
+              />
+            </div>
           </div>
 
           <div className="text-center">
-            <button className="bg-white text-[#181b2d] px-10 py-4 font-bold uppercase tracking-wider hover:bg-gray-100 transition-colors rounded shadow-lg hover:shadow-xl">
-              Contactez-nous
-            </button>
+           <a 
+              href="https://www.linkedin.com/company/9215716"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white text-[#666666] px-10 py-4 font-bold uppercase tracking-wider hover:bg-gray-100 transition-colors rounded shadow-lg hover:shadow-xl"
+            >
+              Suivez-nous sur LinkedIn
+            </a>
           </div>
         </div>
       </section>
 
       {/* Notre réseau */}
-      <section className="py-24 bg-white">
+      <section id="reseau" className="py-24 bg-white">
         <div className="container mx-auto px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-center uppercase text-[#ca0506]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-center uppercase text-[#cc0000]">
             Notre réseau
           </h2>
 
@@ -230,7 +257,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#181b2d] text-white py-12">
+      <footer id="contact" className="bg-[#666666] text-white py-12">
         <div className="container mx-auto px-8 text-center">
           <p className="text-sm">&copy; 2024 Axandus - L'accélérateur industriel</p>
         </div>
