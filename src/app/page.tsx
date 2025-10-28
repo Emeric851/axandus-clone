@@ -193,67 +193,80 @@ export default function Home() {
       </section>
 
   {/* LinkedIn Feed */}
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8" />
-<title>Flux RSS</title>
-<style>
-  .feed-item {
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  .feed-item a {
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-  }
-  .feed-item p {
-    margin: 5px 0;
-  }
-</style>
-</head>
-<body>
+ export default async function Page() {
+  const feedUrl = "https://rss.app/feeds/v1.1/l8suyXaruUHhhNsm.json";
 
-<h2>Dernières actualités</h2>
-<div id="rss-feed">Chargement du flux...</div>
+  const res = await fetch(feedUrl, {
+    next: { revalidate: 1800 },
+  });
+  const data = await res.json();
+  const items = data.items?.slice(0, 10) ?? [];
 
-<script>
-const feedUrl = "https://rss.app/feeds/v1.1/l8suyXaruUHhhNsm.json";
+  return (
+    <main style={{ padding: "20px" }}>
+      <h1>Dernières publications LinkedIn</h1>
 
-async function loadFeed() {
-  try {
-    const response = await fetch(feedUrl);
-    const data = await response.json();
+      <div
+        style={{
+          display: "grid",
+          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+        }}
+      >
+        {items.map((item: any) => (
+          <a
+            key={item.id}
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "block",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              padding: "12px",
+              textDecoration: "none",
+              color: "inherit",
+              transition: "0.2s",
+            }}
+          >
+            {item.image && (
+              <img
+                src={item.image}
+                alt={item.title}
+                style={{
+                  width: "100%",
+                  borderRadius: "8px",
+                  marginBottom: "10px",
+                }}
+              />
+            )}
 
-    const container = document.getElementById("rss-feed");
-    container.innerHTML = "";
+            <h3 style={{ marginBottom: "8px" }}>{item.title}</h3>
 
-    data.items.slice(0, 10).forEach(item => {
-      const div = document.createElement("div");
-      div.className = "feed-item";
+            {item.description && (
+              <p
+                style={{
+                  overflow: "hidden",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
+                  opacity: 0.85,
+                }}
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              />
+            )}
 
-      div.innerHTML = `
-        <a href="${item.url}" target="_blank">${item.title}</a>
-        <p>${item.description || ""}</p>
-        <small>${new Date(item.publishedDate).toLocaleString("fr-FR")}</small>
-      `;
-      container.appendChild(div);
-    });
-
-  } catch (error) {
-    document.getElementById("rss-feed").innerHTML =
-      "Erreur lors du chargement du flux RSS.";
-    console.error(error);
-  }
+            <small style={{ opacity: 0.6 }}>
+              {new Date(item.publishedDate).toLocaleDateString("fr-FR")}
+            </small>
+          </a>
+        ))}
+      </div>
+    </main>
+  );
 }
 
-loadFeed();
-</script>
 
-</body>
-</html>
       {/* Notre réseau */}
       <section id="reseau" className="py-24 bg-white">
         <div className="container mx-auto px-8">
