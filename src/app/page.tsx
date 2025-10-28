@@ -194,7 +194,12 @@ export default function Home() {
       </section>
 
   {/* LinkedIn Feed */}
-
+         
+<section id="linkedin-feed">
+  <h2>Actualités LinkedIn</h2>
+  <LinkedInFeed />
+</section>
+        
 
       {/* Notre réseau */}
       <section id="reseau" className="py-24 bg-white">
