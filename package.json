@@ -20,7 +20,7 @@
     "tailwind-merge": "^3.3.0",
     "tailwindcss-animate": "^1.0.7",
     "rss-parser": "^4.x",
-    "node-cache": "^5.x",
+    "node-cache": "^5.x"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
