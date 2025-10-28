@@ -193,7 +193,67 @@ export default function Home() {
       </section>
 
   {/* LinkedIn Feed */}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Flux RSS</title>
+<style>
+  .feed-item {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  .feed-item a {
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  .feed-item p {
+    margin: 5px 0;
+  }
+</style>
+</head>
+<body>
 
+<h2>Dernières actualités</h2>
+<div id="rss-feed">Chargement du flux...</div>
+
+<script>
+const feedUrl = "https://rss.app/feeds/v1.1/l8suyXaruUHhhNsm.json";
+
+async function loadFeed() {
+  try {
+    const response = await fetch(feedUrl);
+    const data = await response.json();
+
+    const container = document.getElementById("rss-feed");
+    container.innerHTML = "";
+
+    data.items.slice(0, 10).forEach(item => {
+      const div = document.createElement("div");
+      div.className = "feed-item";
+
+      div.innerHTML = `
+        <a href="${item.url}" target="_blank">${item.title}</a>
+        <p>${item.description || ""}</p>
+        <small>${new Date(item.publishedDate).toLocaleString("fr-FR")}</small>
+      `;
+      container.appendChild(div);
+    });
+
+  } catch (error) {
+    document.getElementById("rss-feed").innerHTML =
+      "Erreur lors du chargement du flux RSS.";
+    console.error(error);
+  }
+}
+
+loadFeed();
+</script>
+
+</body>
+</html>
       {/* Notre réseau */}
       <section id="reseau" className="py-24 bg-white">
         <div className="container mx-auto px-8">
