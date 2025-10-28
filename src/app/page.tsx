@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import LinkedInFeed from '../components/LinkedInFeed';
+import LinkedInFeed from './components/LinkedInFeed';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -194,12 +195,20 @@ export default function Home() {
       </section>
 
   {/* LinkedIn Feed */}
-         
+/*         
 <section id="linkedin-feed">
   <h2>Actualités LinkedIn</h2>
   <LinkedInFeed />
 </section>
-        
+*/
+  export default function HomePage() {
+  return (
+    <main style={{ padding: '20px' }}>
+      <h1>Bienvenue sur notre site</h1>
+      <LinkedInFeed />
+    </main>
+  );
+}       
 
       {/* Notre réseau */}
       <section id="reseau" className="py-24 bg-white">
