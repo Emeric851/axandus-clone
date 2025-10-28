@@ -193,16 +193,7 @@ export default function Home() {
       </section>
 
   {/* LinkedIn Feed */}
-import LinkedInFeed from '../components/LinkedInFeed';
 
-export default function Home() {
-  return (
-    <div>
-      <h1>Dernières publications LinkedIn</h1>
-      <LinkedInFeed />
-    </div>
-  );
-}
       {/* Notre réseau */}
       <section id="reseau" className="py-24 bg-white">
         <div className="container mx-auto px-8">
