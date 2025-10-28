@@ -1,6 +1,12 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   return (
-    <div className="min-h-screen scroll-smooth">
+       <div className="min-h-screen scroll-smooth">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#181b2d] py-4 px-8 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">
