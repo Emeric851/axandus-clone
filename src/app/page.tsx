@@ -192,40 +192,85 @@ export default function Home() {
         </div>
       </section>
 
-       {/* LinkedIn Feed */}
-        <section id="linkedin" className="py-24 bg-[#CC0000]">
-        <div className="container mx-auto px-8 max-w-5xl">
-           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center uppercase text-[#666666]">
-            Actualités LinkedIn
-          </h2>
+  {/* LinkedIn Feed */}
+       import { getLinkedInFeed } from "@/app/lib/getLinkedInFeed";
 
-       <div className="bg-white rounded-lg shadow-2xl p-8 mb-12">
-            <div className="max-h-[600px] overflow-y-auto">
-              <iframe
-                src="https://rss.app/embed/v1/list/yLnJFWaEe6zY8Tpw"
-                style={{
-                  width: '100%',
-                  minHeight: '500px',
-                  border: 'none',
-                }}
-                title="LinkedIn Feed Axandus"
-              />
-            </div>
-          </div>
+       export default async function LinkedInFeedSection() {
+       const posts = await getLinkedInFeed();
 
-          <div className="text-center">
-           <a 
-              href="https://www.linkedin.com/company/9215716"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-white text-[#666666] px-10 py-4 font-bold uppercase tracking-wider hover:bg-gray-100 transition-colors rounded shadow-lg hover:shadow-xl"
+  return (
+    <section id="linkedin" className="py-24 bg-[#F3F6F8]">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#0077B5] mb-16 uppercase">
+          Actualités LinkedIn
+        </h2>
+
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post, index) => (
+            <article
+              key={index}
+              className="bg-white rounded-xl shadow-lg transition-all border border-gray-200 hover:border-[#0077B5] hover:shadow-2xl overflow-hidden"
             >
-              Suivez-nous sur LinkedIn
-            </a>
-          </div>
-        </div>
-      </section>
+              <a
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Voir le post : ${post.title}`}
+              >
+                {post.image && (
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                    />
+                  </div>
+                )}
 
+                <div className="p-6">
+                  <h3 className="font-bold text-[#1A1A1A] text-lg mb-3 line-clamp-2">
+                    {post.title}
+                  </h3>
+
+                  {post.content && (
+                    <p
+                      className="text-gray-600 text-sm line-clamp-4"
+                      dangerouslySetInnerHTML={{ __html: post.content }}
+                    />
+                  )}
+
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="text-xs text-gray-500">
+                      {new Date(post.pubDate).toLocaleDateString("fr-FR")}
+                    </span>
+
+                    <img
+                      src="/linkedin-icon.svg"
+                      alt="LinkedIn"
+                      className="w-6 h-6"
+                    />
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div className="text-center mt-16">
+          <a
+            href="https://www.linkedin.com/company/9215716"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#0077B5] text-white px-10 py-4 font-bold uppercase tracking-wider hover:bg-[#005582] transition-colors rounded-full shadow-lg hover:shadow-xl"
+          >
+            Voir plus sur LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
       {/* Notre réseau */}
       <section id="reseau" className="py-24 bg-white">
         <div className="container mx-auto px-8">
