@@ -8,7 +8,7 @@ export default function Home() {
   return (
        <div className="min-h-screen scroll-smooth">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#666666] py-4 px-8 shadow-lg">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#cc0000] py-4 px-8 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
             <img
@@ -19,7 +19,7 @@ export default function Home() {
           </div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white text-2xl hover:text-[#CC0000] transition-colors"
+            className="text-white text-2xl hover:text-[#666666] transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? '✕' : '☰'}
