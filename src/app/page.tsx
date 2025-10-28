@@ -12,7 +12,7 @@ export default function Home() {
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
             <img
-              src="https://ext.same-assets.com/2033783188/185936063.svg"
+              src="/assets/images/logo-axandus-white.png"
               alt="Axandus Logo"
               className="h-12 md:h-14"
             />
