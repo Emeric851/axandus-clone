@@ -193,82 +193,14 @@ export default function Home() {
       </section>
 
   {/* LinkedIn Feed */}
-       import { getLinkedInFeed } from "@/app/lib/getLinkedInFeed";
+import LinkedInFeed from '../components/LinkedInFeed';
 
-       export default async function LinkedInFeedSection() {
-       const posts = await getLinkedInFeed();
-
+export default function Home() {
   return (
-    <section id="linkedin" className="py-24 bg-[#F3F6F8]">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#0077B5] mb-16 uppercase">
-          Actualités LinkedIn
-        </h2>
-
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, index) => (
-            <article
-              key={index}
-              className="bg-white rounded-xl shadow-lg transition-all border border-gray-200 hover:border-[#0077B5] hover:shadow-2xl overflow-hidden"
-            >
-              <a
-                href={post.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Voir le post : ${post.title}`}
-              >
-                {post.image && (
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform"
-                    />
-                  </div>
-                )}
-
-                <div className="p-6">
-                  <h3 className="font-bold text-[#1A1A1A] text-lg mb-3 line-clamp-2">
-                    {post.title}
-                  </h3>
-
-                  {post.content && (
-                    <p
-                      className="text-gray-600 text-sm line-clamp-4"
-                      dangerouslySetInnerHTML={{ __html: post.content }}
-                    />
-                  )}
-
-                  <div className="flex items-center justify-between mt-4">
-                    <span className="text-xs text-gray-500">
-                      {new Date(post.pubDate).toLocaleDateString("fr-FR")}
-                    </span>
-
-                    <img
-                      src="/linkedin-icon.svg"
-                      alt="LinkedIn"
-                      className="w-6 h-6"
-                    />
-                  </div>
-                </div>
-              </a>
-            </article>
-          ))}
-        </div>
-
-        <div className="text-center mt-16">
-          <a
-            href="https://www.linkedin.com/company/9215716"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-[#0077B5] text-white px-10 py-4 font-bold uppercase tracking-wider hover:bg-[#005582] transition-colors rounded-full shadow-lg hover:shadow-xl"
-          >
-            Voir plus sur LinkedIn
-          </a>
-        </div>
-      </div>
-    </section>
+    <div>
+      <h1>Dernières publications LinkedIn</h1>
+      <LinkedInFeed />
+    </div>
   );
 }
       {/* Notre réseau */}
