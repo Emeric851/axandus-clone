@@ -46,7 +46,7 @@ export default function Home() {
       {/* Hero Section */}
       <section id="accueil" className="relative min-h-screen flex items-center justify-center text-white pt-20"
         style={{
-          background: `linear-gradient(rgba(24, 27, 45, 0.85), rgba(24, 27, 45, 0.85)), url('https://ext.same-assets.com/2033783188/1506342101.jpeg')`,
+          background: `linear-gradient(rgba(24, 27, 45, 0.85), rgba(24, 27, 45, 0.85)), url('/assets/images/fond header.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'
